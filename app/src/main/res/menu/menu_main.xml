@@ -1,8 +1,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_pick_random_game" android:title="Pick random game"
+    <item android:id="@+id/action_pick_random_game" android:title="@string/pick_random_game"
         android:orderInCategory="100" app:showAsAction="ifRoom" />
-    <item android:id="@+id/action_add_game" android:title="Add new game"
+    <item android:id="@+id/action_add_game" android:title="@string/add_game"
         android:orderInCategory="90" app:showAsAction="ifRoom" />
 </menu>

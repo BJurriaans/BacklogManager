@@ -10,7 +10,9 @@ import android.widget.TextView;
 import com.example.bobby.gamesbacklogmanager.Model.Game;
 import com.example.bobby.gamesbacklogmanager.R;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Bobby on 12-3-2015.
@@ -51,10 +53,13 @@ public class GameListItemAdapter extends BaseAdapter {
 
         Game game = gameArrayList.get(position);
 
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = format.format(game.getDateAdded());
+
         title.setText(game.getTitle());
         platform.setText(game.getPlatform());
         status.setText(game.getGameStatus().getStatus());
-        date.setText(game.getDateAdded().toString());
+        date.setText(dateString);
 
 
         return row;

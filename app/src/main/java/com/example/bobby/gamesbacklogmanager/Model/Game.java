@@ -1,17 +1,20 @@
 package com.example.bobby.gamesbacklogmanager.Model;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by Bobby on 12-3-2015.
  */
-public class Game {
-    private int id;
+public class Game implements Serializable {
+    private long id;
     private String title;
     private String platform;
     private Date dateAdded;
     private GameStatus gameStatus;
     private String notes = "";
+
+    public Game(){}
 
     public Game(int id, String title, String platform, Date dateAdded, GameStatus gameStatus, String notes) {
         this.id = id;
@@ -22,11 +25,11 @@ public class Game {
         this.notes = notes;
     }
 
-    public int getId(){
+    public long getId(){
         return id;
     }
 
-    public void setId(int id){
+    public void setId(long id){
         this.id = id;
     }
 
