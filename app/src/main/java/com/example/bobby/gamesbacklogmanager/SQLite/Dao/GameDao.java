@@ -14,6 +14,7 @@ import java.text.Format;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Bobby on 21-3-2015.
@@ -85,11 +86,14 @@ public class GameDao {
             db = dbHelper.getWritableDatabase();
         }
 
+        SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+        String dateString = format.format(game.getDateAdded());
+
         ContentValues values = new ContentValues();
         values.put(DBHelper.GAME_COLUMN_TITLE, game.getTitle());
         values.put(DBHelper.GAME_COLUMN_PLATFORM, game.getPlatform());
         values.put(DBHelper.GAME_COLUMN_STATUS, game.getGameStatus().getStatus());
-        values.put(DBHelper.GAME_COLUMN_DATE_ADDED, game.getDateAdded().toString());
+        values.put(DBHelper.GAME_COLUMN_DATE_ADDED, dateString);
         values.put(DBHelper.GAME_COLUMN_NOTES, game.getNotes());
 
         db.update(DBHelper.GAME_TABLE_NAME, values, DBHelper.GAME_COLUMN_ID + " =?", new String[]{Long.toString(game.getId())});
@@ -105,8 +109,8 @@ public class GameDao {
         }
 
         db.delete(DBHelper.GAME_TABLE_NAME, DBHelper.GAME_COLUMN_ID + " =?", new String[] {Long.toString(game.getId())});
-        //db.delete(DBHelper.GAME_TABLE_NAME, DBHelper.GAME_COLUMN_ID + " =?", new String[] {"1"});
-        //.execSQL("DROP TABLE game");
+        //db.delete(DBHelper.GAME_TABLE_NAME, DBHelper.GAME_COLUMN_ID + " =?", new String[] {"1","2","3","4","5","6","7","8"});
+        //db.execSQL("DROP TABLE game");
 
         if(db.isOpen()){
             dbHelper.close();
@@ -122,7 +126,8 @@ public class GameDao {
             game.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_TITLE)));
             game.setPlatform(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_PLATFORM)));
 
-            //String DateString = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_DATE_ADDED));
+            String dateString = cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_DATE_ADDED));
+            //Date date = format.parse(dateString);
             game.setGameStatus(GameStatus.getGameStatusByValue(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_STATUS))));
             game.setDateAdded(format.parse(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_DATE_ADDED))));
             game.setNotes(cursor.getString(cursor.getColumnIndexOrThrow(DBHelper.GAME_COLUMN_NOTES)));

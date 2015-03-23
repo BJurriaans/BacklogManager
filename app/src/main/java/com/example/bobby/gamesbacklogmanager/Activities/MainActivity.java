@@ -38,10 +38,11 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        DBHelper dbHelper = new DBHelper(MainActivity.this);
-//        dbHelper.onCreate(dbHelper.getWritableDatabase());
 //        GameDao gameDao = new GameDao(MainActivity.this);
 //        gameDao.deleteGame(null);
+//        DBHelper dbHelper = new DBHelper(MainActivity.this);
+//        dbHelper.onCreate(dbHelper.getWritableDatabase());
+
 
         gameListView = (ListView) findViewById(R.id.gameList);
         games = getGames();
